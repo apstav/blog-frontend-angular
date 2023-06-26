@@ -1,0 +1,146 @@
+<div class="card bgLight">
+    <div class="container py-5">
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-md-8 col-12 pe-md-5 pe-0 d-none d-md-block">
+                    <h1 class="display-5">
+                        The Rambler
+                    </h1>
+                    <p class="lead">
+                        A group of individuals who share the same passion!
+                    </p>
+                    <hr>
+                    <small>
+                        We will always stop for a photo, or to hit a jump.
+                        We believe the outdoors should be respected. Please,
+                        pack it in and pack it out. Leave it better, even.
+                        Remember, we’re all ambassadors for cycling, so be
+                        polite on the road and the trails and observe the leave
+                        no trace principles.
+                    </small>
+                    <hr>
+                    <button class="btn btn-dark me-3" routerLink="/all_posts">Read posts</button>
+                    <a class="btn btnLight" routerLink="/login">Log in</a>
+                </div>
+
+                <div class="col-md-4 col-12">
+                    <form #signupForm="ngForm" (ngSubmit)="signUp()" class="row g-3">
+
+                        <div class="col-md-6 col-12">
+                            <label class="form-label">Firstname*</label>
+                            <input type="text" class="form-control"
+                                [class.is-invalid]="firstname.touched && firstname.invalid" required
+                                #firstname="ngModel" [(ngModel)]="signupData.data.firstname" name="firstname">
+                            <small *ngIf="firstname.touched && firstname.invalid" class="text-danger">
+                                Fill this field!
+                            </small>
+                        </div>
+
+                        <div class="col-md-6 col-12">
+                            <label class="form-label">Lastname*</label>
+                            <input type="text" class="form-control"
+                                [class.is-invalid]="lastname.touched && lastname.invalid" required #lastname="ngModel"
+                                [(ngModel)]="signupData.data.lastname" name="lastname">
+                            <small *ngIf="lastname.touched && lastname.invalid" class="text-danger">
+                                Fill this field!
+                            </small>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">Email address*</label>
+                            <input type="email" class="form-control" [class.is-invalid]="email.touched && email.invalid"
+                                required #email="ngModel" [(ngModel)]="signupData.data.email" name="email">
+                            <small *ngIf="email.touched && email.invalid" class="text-danger">
+                                Fill this field!
+                            </small>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">Password*</label>
+                            <input type="password" class="form-control"
+                                [class.is-invalid]="password.touched && password.invalid" required #password="ngModel"
+                                [(ngModel)]="signupData.data.password" name="password">
+                            <small *ngIf="password.touched && password.invalid" class="text-danger">
+                                Fill this field!
+                            </small>
+
+                            <small *ngIf="signupData.error" class="text-danger">
+                                {{signupData.error}}!
+                            </small>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-dark" type="submit"
+                                [disabled]="signupForm.invalid || signupData.loading">
+                                {{ signupData.loading ? 'Signing up...' : 'Signup for free' }}
+                            </button>
+                            <a class="btn btn-sm btnLight" routerLink="/login">
+                                Already have an account? Login
+                            </a>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- <div class="container">
+    <div class="row py-5">
+
+        <div class="col-md-4 col-12">
+            <div class="card text-center px-3">
+                <div class="card-body">
+                    <i class="fa fa-bookmark fa-4x mb-3" aria-hidden="true"></i>
+                    <br>
+                    <small>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua
+                    </small>
+                    <br>
+                    <div class="d-grid gap-2 mt-3">
+                        <button class="btn btn-sm btn-dark" type="button">Yes, we do</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-12">
+            <div class="card text-center px-3">
+                <div class="card-body">
+                    <i class="fa fa-snowflake-o fa-4x mb-3" aria-hidden="true"></i>
+                    <br>
+                    <small>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua
+                    </small>
+                    <br>
+                    <div class="d-grid gap-2 mt-3">
+                        <button class="btn btn-sm btn-dark" type="button">Yes, we do</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-12">
+            <div class="card text-center px-3">
+                <div class="card-body">
+                    <i class="fa fa-cubes fa-4x mb-3" aria-hidden="true"></i>
+                    <br>
+                    <small>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua
+                    </small>
+                    <br>
+                    <div class="d-grid gap-2 mt-3">
+                        <button class="btn btn-sm btn-dark" type="button">Yes, we do</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div> -->

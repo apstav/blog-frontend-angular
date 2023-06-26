@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="row py-5">
+
+        <!-- <p *ngIf="areaList.loading || areaList.error">
+            {{ areaList.error }}
+            {{ areaList.loading ? 'Loading...' : '' }}
+        </p> -->
+        <!-- *ngIf="!areaList.loading && !areaList.error" -->
+        <div class="col-md-6 col-12">
+            <form #blogForm="ngForm" (ngSubmit)="savePost()" enctype='multipart/form-data'>
+
+                <div class="imgCap" *ngIf="post.data.img">
+                    <img [src]="post.data.img" class="imagepreview" alt="">
+                </div>
+
+                <div class="mb-3">
+                    <label for="formFileSm" class="form-label">
+                        {{ post.data.img ? 'Change image (Maxsize 3MB)' : 'Upload image (Maxsize 3MB)' }}
+                    </label>
+                    <input class="form-control form-control-sm" type="file" accept="image/*"
+                        (change)="fileChangeEvent($event)">
+                    <small class="text-danger">
+                    </small>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Post title*</label>
+                    <input type="text" [class.is-invalid]="title.touched && title.invalid" required #title="ngModel"
+                        [(ngModel)]="post.data.title" name="post" class="form-control">
+                    <small class="text-danger" *ngIf="title.touched && title.invalid">
+                        Fill this field
+                    </small>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Select area*</label>
+                    <select class="form-select" [class.is-invalid]="areaId.touched && areaId.invalid" #areaId="ngModel"
+                        required [(ngModel)]="post.data.area" name="areaId">
+                        <option *ngFor="let area of areaList" [value]="area._id">
+
+                            {{ area.areaname }}
+
+                        </option>
+                    </select>
+                    <small class="text-danger" *ngIf="areaId.touched && areaId.invalid">
+                        Fill this field
+                    </small>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Post body*</label>
+                    <textarea [class.is-invalid]="body.touched && body.invalid" style="height: 100px; width: 700px;"
+                        required #body="ngModel" [(ngModel)]="post.data.body" name="body"></textarea>
+                    <small class="text-danger" *ngIf="body.touched && body.invalid">
+                        Fill this field
+                    </small>
+                </div>
+
+                <p *ngIf="post.error" class="text-danger">
+                    {{ post.error }}
+                </p>
+                <!-- [disabled]="postForm.invalid || post.loading" -->
+                <button type="submit" class="btn btn-dark me-2">
+                    {{ post.loading ? 'Saving post...' : 'Save post' }}
+                </button>
+
+            </form>
+        </div>
+    </div>
+</div>

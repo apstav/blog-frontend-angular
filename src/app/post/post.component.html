@@ -1,0 +1,125 @@
+<div *ngIf="post.loading || post.error" class="container noPost">
+    {{ post.loading ? 'Loading...' : post.error }}
+</div>
+
+
+<div class="row py-5 d-flex align-items-center justify-content-center">
+    <div class="img-section d-flex align-items-center justify-content-center" *ngIf="post.data">
+        <img [src]="post.data.img" alt="">
+    </div>
+
+
+    <div class="col-md-7 col-12">
+
+        <p *ngIf="post.error || post.loading">
+            {{ post.error }}
+            {{ post.loading ? 'Loading post...' : '' }}
+        </p>
+
+
+        <!-- post -->
+        <!-- <h3>
+            {{ post.data.title | titlecase }}
+
+        </h3>
+        <p>
+            <i class="me-2">
+                <i class="fa fa-bookmark me-1" aria-hidden="true"></i> {{ post.data.area.areaname | titlecase }}
+            </i>
+            <i>
+                <i class="fa fa-calendar mx-1" aria-hidden="true"></i> {{ post.data.posted }}
+            </i>
+        </p>
+        <p class="postBody">
+            {{ post.data.body }}
+        </p> -->
+
+
+    </div>
+
+
+    <div class="container" *ngIf="post.data">
+
+
+
+        <div class="row py-5">
+
+            <div class="col-md-2 col-12 author mb-4">
+
+            </div>
+
+            <div class="col-md-7 col-12">
+
+                <p *ngIf="post.error || post.loading">
+                    {{ post.error }}
+                    {{ post.loading ? 'Loading post...' : '' }}
+                </p>
+
+                <!-- post -->
+                <h3>
+                    {{ post.data.title | titlecase }}
+
+                </h3>
+                <p>
+                    <i class="me-2">
+                        <i class="fa fa-bookmark me-1" aria-hidden="true"></i> {{ post.data.area.areaname |
+                        titlecase }}
+                    </i>
+                    <i>
+                        <i class="fa fa-calendar mx-1" aria-hidden="true"></i> {{ post.data.posted }}
+                    </i>
+                </p>
+                <p class="postBody">
+                    {{ post.data.body }}
+                </p>
+
+                <!-- reacts -->
+                <hr class="mt-4">
+                <div class="react-section" *ngIf="post.data.reacts">
+                    <a class="btn reactBtn" [class.reacted]="User.hasReact == 'like'" (click)="doReact('like')">
+                        <i class="fa fa-thumbs-up-o" aria-hidden="true"></i>
+                        Like
+                        <span class="badge bg-secondary">
+                            {{ post.data.reacts.like.length }}
+                        </span>
+                    </a>
+                    <a class="btn reactBtn" [class.reacted]="User.hasReact == 'love'" (click)="doReact('love')">
+                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                        Love
+                        <span class="badge bg-secondary">
+                            {{ post.data.reacts.love.length }}
+                        </span>
+                    </a>
+                    <a class="btn reactBtn" [class.reacted]="User.hasReact == 'funny'" (click)="doReact('funny')">
+                        <i class="fa fa-smile-o" aria-hidden="true"></i>
+                        Haha
+                        <span class="badge bg-secondary">
+                            {{ post.data.reacts.funny.length }}
+                        </span>
+                    </a>
+                    <a class="btn reactBtn" [class.reacted]="User.hasReact == 'sad'" (click)="doReact('sad')">
+                        <i class="fa fa-frown-o" aria-hidden="true"></i>
+                        Sad
+                        <span class="badge bg-secondary">
+                            {{ post.data.reacts.sad.length }}
+                        </span>
+                    </a>
+                    <a class="btn reactBtn" [class.reacted]="User.hasReact == 'informative'"
+                        (click)="doReact('informative')">
+                        <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+                        Informative
+                        <span class="badge bg-secondary">
+                            {{ post.data.reacts.informative.length }}
+                        </span>
+                    </a>
+                </div>
+                <hr>
+
+            </div>
+
+            <div class="col-md-3 col-12">
+                <app-area-component></app-area-component>
+            </div>
+
+        </div>
+    </div>

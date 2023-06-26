@@ -1,0 +1,103 @@
+<div class="card bgLight">
+    <div class="container py-5">
+        <div class="card-body">
+            <p *ngIf="userProfile.loading">
+                Getting user data...
+            </p>
+            <small *ngIf="userProfile.error" class="text-danger">
+                <b>ERROR</b> {{ userProfile.error }}!
+            </small>
+            <div class="row profile" *ngIf="!userProfile.error && !userProfile.loading">
+
+                <div class="col-md-6 col-12 my-2">
+
+                    <div class="imgCap">
+                        <img [src]="userProfile.data.img" alt="User image">
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-12 my-2" *ngIf="userProfile.data">
+                    <h3>
+                        <b> {{ userProfile.data.firstname }} </b> {{ userProfile.data.lastname }}
+                    </h3>
+
+                    <h4>
+                        <i class="fa fa-envelope me-1" aria-hidden="true"></i> {{ userProfile.data.email }}
+                    </h4>
+                    <h4>
+                        <i class="fa fa-calendar-check-o me-1" aria-hidden="true"></i> {{ userProfile.data.joined }}
+                    </h4>
+
+
+                    <p class="d-none d-md-block" *ngIf="userProfile.data.bio">
+                        <b>About me:</b> {{ userProfile.data.bio }}
+                    </p>
+                    <a *ngIf="(User | async)" routerLink="/write_post" class="btn btn-sm btn-dark me-2">Write new
+                        post</a>
+                    <a *ngIf="(User | async)" routerLink="/profile_edit" class="btn btn-sm btn-light"
+                        routerLink="/profile_edit">Edit profile</a>
+                    <br>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container postSection">
+    <div class="row py-5">
+
+        <div class="col-md-9 col-12">
+
+            <p class="section-title"> <i class="fa fa-paperclip me-2" aria-hidden="true"></i>
+                {{ userProfile.data.firstname+"'s" }} posts
+            </p>
+
+            <p *ngIf="userAllPosts.error || userAllPosts.loading">
+                {{ userAllPosts?.error }}
+                {{ userAllPosts.loading ? 'Loading...' : '' }}
+            </p>
+
+            <div class="row" *ngIf="!userAllPosts.error && !userAllPosts.loading">
+
+                <!-- posts -->
+                <p *ngIf="userAllPosts?.length">
+                    <i class="fa fa-exclamation-triangle me-2" aria-hidden="true"></i> No posts found!
+                </p>
+
+                <div class="col-md-9 col-12" *ngFor="let post of userAllPosts.items">
+                    <div class="card posts" style="width: 100%;">
+                        <div class="img">
+                            <img [src]="post.img" class="card-img-top">
+                        </div>
+
+                        <div class="card-body">
+
+                            <h5 class="card-title">
+                                <a [routerLink]="['/post', post._id]">
+                                    {{ post.title }}
+                                </a>
+                            </h5>
+
+                            <p class="card-text">
+                                <i class="fa fa-user-circle-o" aria-hidden="true"></i> {{ post.writter.firstname }}
+                                <br>
+                                <i class="fa fa-bookmark" aria-hidden="true"></i> {{ post.area.areaname }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3 col-12">
+            <div *ngIf="userProfile.loading && userProfile.data.firstname">
+                <app-area-component [userName]="userProfile.data.firstname" [userId]="userProfile.data._id"
+                    [areaId]="areaId"></app-area-component>
+            </div>
+        </div>
+
+    </div>
+</div>

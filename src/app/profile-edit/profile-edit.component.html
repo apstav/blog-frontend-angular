@@ -1,0 +1,88 @@
+<div class="card bgLight">
+    <div class="container py-3">
+        <div class="card-body">
+            <h4>
+                <i class="fa fa-pencil-square-o me-1" aria-hidden="true"></i> Edit profile
+            </h4>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <p *ngIf="user.loading || user.error" class="mt-2 mb-5 pb-5">
+        {{ user.loading ? 'Loading...' : '' }}
+        {{ user.error }}
+    </p>
+    <div class="row py-5" *ngIf="!user.loading && !user.error">
+        <div class="col-md-6 col-12">
+            <form class="row g-3" enctype='multipart/form-data' #editForm="ngForm" (ngSubmit)="editProfile()">
+
+                <div class="imgCap" *ngIf="user.data.img">
+                    <img [src]="user.data.img" class="imagepreview" alt="">
+                </div>
+
+                <div class="mb-3">
+                    <label for="formFileSm" class="form-label">
+                        {{user.data.img ? 'Change profile picture' : 'Upload profile picture'}}
+
+                    </label>
+                    <input class="form-control form-control-sm" type="file" accept="image/*"
+                        (change)="fileChangeEvent($event)">
+                    <small class="text-danger">
+                    </small>
+                </div>
+
+                <div class="col-md-6 col-12 mb-3">
+                    <label class="form-label">Firstname*</label>
+                    <input type="text" [class.is-invalid]="firstname.touched && firstname.invalid" required
+                        #firstname="ngModel" [(ngModel)]="user.data.firstname" name="firstname" class="form-control">
+                    <small class="text-danger" *ngIf="firstname.touched && firstname.invalid">
+                        Fill this field
+                    </small>
+                </div>
+
+                <div class="col-md-6 col-12 mb-3">
+                    <label class="form-label">Lastname*</label>
+                    <input type="text" [class.is-invalid]="lastname.touched && lastname.invalid" required
+                        #lastname="ngModel" [(ngModel)]="user.data.lastname" name="lastname" class="form-control">
+                    <small class="text-danger" *ngIf="lastname.touched && lastname.invalid">
+                        Fill this field
+                        <!--   -->
+                    </small>
+                </div>
+
+                <div class="col-md-6 col-12 mb-3">
+                    <label class="form-label">Email*</label>
+                    <input type="email" [class.is-invalid]="email.touched && email.invalid" required #email="ngModel"
+                        [(ngModel)]="user.data.email" name="email" class="form-control">
+                    <small class="text-danger" *ngIf="email.touched && email.invalid">
+                        Fill this field
+                        <!-- [class.is-invalid]="email.touched && email.invalid" required -->
+                    </small>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">About myself</label>
+                    <textarea type="text" [class.is-invalid]="bio.touched && bio.invalid" #bio="ngModel"
+                        [(ngModel)]="user.data.bio" name="bio" class="form-control" style="height: 100px;"></textarea>
+                    <!-- <textarea type="text" [class.is-invalid]="bio.touched && bio.invalid" #bio="ngModel"
+                        [(ngModel)]="user.data.bio" name=bio" class="form-control" style="height: 100px" ></textarea> -->
+                    <small class="text-danger" *ngIf="bio.touched && bio.invalid">
+                        Fill this field
+                    </small>
+
+                    <small class="text-danger" *ngIf="user.error || editUser.error">
+                        {{ user.error }} {{ editUser.error }}
+                    </small>
+                </div>
+
+                <button type="submit" class="btn btn-dark me-2">
+                    Submit
+                    <!-- [disabled]="!form.valid" -->
+                    <!-- {{ editUser.loading ? 'Updating profile...' : 'Update profile' }} -->
+                </button>
+                <!-- [disabled]="editForm.invalid || user.loading || editUser.loading" -->
+            </form>
+        </div>
+    </div>

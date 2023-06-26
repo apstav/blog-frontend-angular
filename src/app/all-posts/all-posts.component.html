@@ -1,0 +1,65 @@
+<div class="container postSection">
+    <div class="row py-5">
+
+        <div class="col-md-9 col-12" *ngIf="allPosts.loading || allPosts.error">
+            {{ allPosts.loading ? 'Loading...' : allPosts.error }}
+        </div>
+
+        <div class="col-md-9 col-12 mb-2" *ngIf="!allPosts?.loading && !allPosts.error">
+            <p *ngIf="!allPosts?.items.length">
+                <i class="fa fa-exclamation-triangle me-2" aria-hidden="true"></i> No post found for the selected area!
+            </p>
+
+            <!-- <div class="row" *ngIf="allPosts.items.length">
+                <p class="section-title"> <i class="fa fa-paperclip me-2" aria-hidden="true"></i>
+                    {{ currentareaId == 'all' ? 'All' : (allPosts.items[0].area.areaname  | titlecase)  }} topic posts
+                </p> -->
+
+            <!-- posts -->
+            <div class="row" *ngIf="!allPosts.error && !allPosts.loading">
+
+                <p *ngIf="!allPosts.items.length">
+                    No posts found!
+                </p>
+
+                <div class="col-md-12 col-12" *ngFor="let post of allPosts.items">
+                    <div class="card posts" style="width: 100%; margin-bottom: 100px;">
+                        <div class="img">
+                            <img [routerLink]="['/post/details/', post._id]" [src]="post.img" class="card-img-top">
+                        </div>
+
+                        <div class="card-body">
+
+                            <h5 class="card-title">
+                                <a [routerLink]="['/post/details/', post._id]">
+                                    {{ post.title }}
+                                </a>
+                            </h5>
+
+                            <p class="card-body">
+                            <p>
+                                {{ post.body | slice:0:100 }}
+                            </p>
+
+
+                            <p class="card-text">
+                                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                                <!-- {{ post.writter.firstname }} -->
+                                <br>
+                                <i class="fa fa-bookmark" aria-hidden="true"></i> {{ post.area.areaname }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- posts -->
+
+            <!-- </div> -->
+        </div>
+
+        <div class="col-md-3 col-12">
+            <app-area></app-area>
+        </div>
+
+    </div>
+</div>

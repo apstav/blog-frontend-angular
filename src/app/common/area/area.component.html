@@ -1,0 +1,39 @@
+<p class="section-title"> <i class="fa fa-list-ul me-2" aria-hidden="true"></i> {{ sectionTitle }} area</p>
+<p *ngIf="areas.loading || areas.error">
+    {{ areas.loading ? 'Loading...' : '' }}
+    {{ areas.error }}
+</p>
+
+<!-- for all post page -->
+<ul class="list-group" *ngIf="userId == 'all' && !areas.loading && !areas.error">
+    <li class="list-group-item" [class.active]="areas.currentAreaId == 'all'" routerLink="/all_posts">
+        All
+        <span class="badge bg-light ms-2">
+            {{ areas.totalPosts }}
+        </span>
+    </li>
+    <li class="list-group-item" [class.active]="areas.currentAreaId == area._id" [routerLink]="['/all_posts', area._id]"
+        *ngFor="let area of areas.items">
+        {{ area.areaname | titlecase }}
+        <!-- <span class="badge bg-secondary ms-2">
+            {{ area.count }}
+        </span> -->
+    </li>
+</ul>
+
+<!-- for profile page -->
+<ul class="list-group" *ngIf="userId != 'all' && !areas.loading && !areas.error">
+    <li class="list-group-item" [class.active]="areas.currentAreaId == 'all'" [routerLink]="['/profile', userId]">
+        All
+        <span class="badge bg-light ms-2">
+            {{ areas.totalPosts }}
+        </span>
+    </li>
+    <li class="list-group-item" [class.active]="areas.currentAreaId == area._id"
+        [routerLink]="['/profile', ['userId'], ['area._id']]" *ngFor="let area of areas.items">
+        {{ area.areaname| titlecase }}
+        <span class="badge bg-secondary ms-2">
+            {{ area.count }}
+        </span>
+    </li>
+</ul>
