@@ -15,15 +15,19 @@ Welcome to the The Rambler project! This is a blog website focused on cycling ro
 To get started with the project, follow these steps:
 
 1.  Clone the repository to your local machine:
-    git clone (git@github.com:apstav/blog-frontend-angular.git)
+
+```bash
+        git clone git@github.com:apstav/blog-frontend-angular.git\
+```
 
 2.  Install the dependancies after cloning
 
-        ```bash
-            npm install
-        ```
+```bash
+        npm install
+```
 
 3.  Run the server
-    ```bash
+
+```bash
         ng serve
-    ```
+```
