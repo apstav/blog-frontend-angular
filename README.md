@@ -20,7 +20,7 @@ To get started with the project, follow these steps:
 2.  Install the dependancies after cloning
 
         ```bash
-        npm install
+            npm install
         ```
 
 3.  Run the server
