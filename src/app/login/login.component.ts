@@ -40,28 +40,16 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginData.error = null!;
     this.loginData.loading = true;
 
-    this.loginData.sub = this.authService.login(this.loginData.data).subscribe(
-      {
-        next: (res) => {
-          this.loginData.sub.unsubscribe();
-          this.router.navigate(['/profile', res.user._id]);
-        },
-        error: (err) => {
-          this.loginData.error = err;
-          this.loginData.loading = false;
-          this.loginData.sub.unsubscribe();
-        },
-      }
-      // (res) => {
-      //   this.loginData.loading = false;
-      //   this.loginData.sub.unsubscribe();
-      //   this.router.navigate(['/profile', res.user._id]);
-      // },
-      // (err) => {
-      //   this.loginData.error = err;
-      //   this.loginData.loading = false;
-      //   this.loginData.sub.unsubscribe();
-      // }
-    );
+    this.loginData.sub = this.authService.login(this.loginData.data).subscribe({
+      next: (res) => {
+        this.loginData.sub.unsubscribe();
+        this.router.navigate(['/profile', res.user._id]);
+      },
+      error: (err) => {
+        this.loginData.error = err;
+        this.loginData.loading = false;
+        this.loginData.sub.unsubscribe();
+      },
+    });
   }
 }

@@ -62,8 +62,6 @@ export class AreaComponent implements OnInit {
       next: (res: any) => {
         (this.areas.items = res),
           this.areas.items.forEach((c) => {
-            //this.areas.totalPosts += c.count;
-            //c.count += 1;
             console.log(c.count);
           }),
           (this.areas.loading = false),

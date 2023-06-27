@@ -58,7 +58,6 @@
                         [(ngModel)]="user.data.email" name="email" class="form-control">
                     <small class="text-danger" *ngIf="email.touched && email.invalid">
                         Fill this field
-                        <!-- [class.is-invalid]="email.touched && email.invalid" required -->
                     </small>
                 </div>
 
@@ -66,8 +65,6 @@
                     <label class="form-label">About myself</label>
                     <textarea type="text" [class.is-invalid]="bio.touched && bio.invalid" #bio="ngModel"
                         [(ngModel)]="user.data.bio" name="bio" class="form-control" style="height: 100px;"></textarea>
-                    <!-- <textarea type="text" [class.is-invalid]="bio.touched && bio.invalid" #bio="ngModel"
-                        [(ngModel)]="user.data.bio" name=bio" class="form-control" style="height: 100px" ></textarea> -->
                     <small class="text-danger" *ngIf="bio.touched && bio.invalid">
                         Fill this field
                     </small>
@@ -79,10 +76,9 @@
 
                 <button type="submit" class="btn btn-dark me-2">
                     Submit
-                    <!-- [disabled]="!form.valid" -->
-                    <!-- {{ editUser.loading ? 'Updating profile...' : 'Update profile' }} -->
+
                 </button>
-                <!-- [disabled]="editForm.invalid || user.loading || editUser.loading" -->
+
             </form>
         </div>
     </div>

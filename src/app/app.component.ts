@@ -14,29 +14,13 @@ export class AppComponent implements OnInit {
   constructor(private _authService: AuthService) {}
 
   ngOnInit(): void {
-    // this.getUserSub = this._authService.fetchUserData().subscribe({
-    //   next: (res) => {
-    //     this.getUserSub.unsubscribe();
-    //   },
-    //   error: (err) => {
-    //     this.getUserSub.unsubscribe();
-    //   },
-    // });
-    this.getUserSub = this._authService.fetchUserData().subscribe(
-      {
-        next: (res) => {
-          this.getUserSub.unsubscribe();
-        },
-        error: (err) => {
-          this.getUserSub.unsubscribe();
-        },
-      }
-      // (res) => {
-      //   this.getUserSub.unsubscribe();
-      // },
-      // (err) => {
-      //   this.getUserSub.unsubscribe();
-      // }
-    );
+    this.getUserSub = this._authService.fetchUserData().subscribe({
+      next: (res) => {
+        this.getUserSub.unsubscribe();
+      },
+      error: (err) => {
+        this.getUserSub.unsubscribe();
+      },
+    });
   }
 }

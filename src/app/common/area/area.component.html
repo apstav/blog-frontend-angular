@@ -15,9 +15,7 @@
     <li class="list-group-item" [class.active]="areas.currentAreaId == area._id" [routerLink]="['/all_posts', area._id]"
         *ngFor="let area of areas.items">
         {{ area.areaname | titlecase }}
-        <!-- <span class="badge bg-secondary ms-2">
-            {{ area.count }}
-        </span> -->
+
     </li>
 </ul>
 

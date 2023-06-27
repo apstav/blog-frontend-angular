@@ -8,7 +8,6 @@ export class ErrorService {
   constructor() {}
 
   handleError(err: HttpErrorResponse) {
-    //console.log(err);
     let errMsg = '';
     if (!err.error || !err.error.error) {
       errMsg = 'Network error';

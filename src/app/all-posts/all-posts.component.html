@@ -10,11 +10,6 @@
                 <i class="fa fa-exclamation-triangle me-2" aria-hidden="true"></i> No post found for the selected area!
             </p>
 
-            <!-- <div class="row" *ngIf="allPosts.items.length">
-                <p class="section-title"> <i class="fa fa-paperclip me-2" aria-hidden="true"></i>
-                    {{ currentareaId == 'all' ? 'All' : (allPosts.items[0].area.areaname  | titlecase)  }} topic posts
-                </p> -->
-
             <!-- posts -->
             <div class="row" *ngIf="!allPosts.error && !allPosts.loading">
 
@@ -43,8 +38,7 @@
 
 
                             <p class="card-text">
-                                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                                <!-- {{ post.writter.firstname }} -->
+
                                 <br>
                                 <i class="fa fa-bookmark" aria-hidden="true"></i> {{ post.area.areaname }}
                             </p>

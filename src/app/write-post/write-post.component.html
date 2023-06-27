@@ -1,11 +1,7 @@
 <div class="container">
     <div class="row py-5">
 
-        <!-- <p *ngIf="areaList.loading || areaList.error">
-            {{ areaList.error }}
-            {{ areaList.loading ? 'Loading...' : '' }}
-        </p> -->
-        <!-- *ngIf="!areaList.loading && !areaList.error" -->
+
         <div class="col-md-6 col-12">
             <form #blogForm="ngForm" (ngSubmit)="savePost()" enctype='multipart/form-data'>
 
@@ -58,7 +54,7 @@
                 <p *ngIf="post.error" class="text-danger">
                     {{ post.error }}
                 </p>
-                <!-- [disabled]="postForm.invalid || post.loading" -->
+
                 <button type="submit" class="btn btn-dark me-2">
                     {{ post.loading ? 'Saving post...' : 'Save post' }}
                 </button>

@@ -4,7 +4,6 @@ import { AllPostsModel } from '../interfaces/all-posts-model';
 import { PostService } from '../services/post.service';
 import { Subscription } from 'rxjs';
 
-const apiUrl = 'http://localhost:3000';
 @Component({
   selector: 'app-all-posts',
   templateUrl: './all-posts.component.html',
@@ -39,15 +38,10 @@ export class AllPostsComponent implements OnInit {
   getAllPosts() {
     this.allPosts.loading = true;
     this.allPosts.error;
-    //this.getAllPosts() =
     this.postService.getpostList('all', this.currentAreaId).subscribe({
       next: (res: any) => {
         (this.allPosts.items = res.result),
           (this.allPosts.totalPosts = res.totalPosts),
-          // (this.allPosts.currentPage = res.currentPage),
-          // (this.allPosts.totalPages = Array(res.totalPages)
-          //   .fill(5)
-          //   .map((x, i) => i)),
           (this.allPosts.loading = false),
           this.allPosts.sub.unsubscribe();
       },
@@ -59,27 +53,3 @@ export class AllPostsComponent implements OnInit {
     });
   }
 }
-
-// changePage(page) {
-//   this.allPosts.loading = true;
-//   this.allPosts.error;
-
-//   this.postService.getpostList('all', this.currentAreaId, page).subscribe(
-//     (res: any) => {
-//       this.allPosts.items = res.result;
-//       this.allPosts.totalPosts = res.totalPosts;
-//       this.allPosts.currentPage = res.currentPage;
-//       this.allPosts.totalPages = Array(res.totalPages)
-//         .fill(5)
-//         .map((x, i) => i);
-
-//       this.allPosts.loading = false;
-//       this.allPosts.sub.unsubscribe();
-//     },
-//     (err) => {
-//       this.allPosts.error = err;
-//       this.allPosts.loading = false;
-//       this.allPosts.sub.unsubscribe();
-//     }
-//   );
-//}

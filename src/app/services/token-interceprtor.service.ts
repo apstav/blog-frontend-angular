@@ -33,17 +33,6 @@ export class TokenInterceptorService implements HttpInterceptor {
     req = this.addAccessTokenHeader(req, accessToken);
 
     return next.handle(req).pipe();
-    // catchError((err) => {
-    //   if (err instanceof HttpErrorResponse && err.status == 401) {
-    //     const refreshToken = this._localStorageService.getFreshToken();
-    //     if (accessToken && refreshToken) {
-    //       return this.refreshToken(req, next);
-    //     }
-    //   } else if (err instanceof HttpErrorResponse && err.status == 403) {
-    //     //(err instanceof HttpErrorResponse && err.status == 403) {
-    //     return this.logoutAndRedirect(err);
-    //   }
-    // })
   }
 
   addAccessTokenHeader(req, accessToken) {
